@@ -1,0 +1,13 @@
+domain: example.com
+layout:
+- quarkus.javaoperatorsdk.io/v1-alpha
+projectName: memcached-quarkus-operator
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  domain: example.com
+  group: cache
+  kind: Memcached
+  version: v1
+version: "3"
