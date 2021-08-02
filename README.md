@@ -1,0 +1,1 @@
+# memcached-quarkus-operator
