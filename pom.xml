@@ -46,16 +46,16 @@
     </dependency>
 
 <!--    // only added this-->
-<!--    <dependency>-->
-<!--      <groupId>io.quarkus</groupId>-->
-<!--      <artifactId>quarkus-micrometer-registry-prometheus</artifactId>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-micrometer-registry-prometheus</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>commons-collections</groupId>
       <artifactId>commons-collections</artifactId>
-      <version>3.2.2</version>
-    </dependency>
+        <version>3.2.2</version>
+      </dependency>
   </dependencies>
 
   <build>
