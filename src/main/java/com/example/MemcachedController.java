@@ -15,6 +15,7 @@ import io.fabric8.kubernetes.client.KubernetesClient;
 import io.javaoperatorsdk.operator.api.*;
 import io.javaoperatorsdk.operator.api.Context;
 import io.javaoperatorsdk.operator.processing.event.EventSourceManager;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.apache.commons.collections.CollectionUtils;
 
 import java.util.HashMap;
@@ -26,9 +27,14 @@ import java.util.stream.Collectors;
 public class MemcachedController implements ResourceController<Memcached> {
 
     private final KubernetesClient client;
-
-    public MemcachedController(KubernetesClient client) {
+    CounterDetails counterDetails;
+    IncrementCounter incrementCounter;
+    private final MeterRegistry meterRegistry;
+    public MemcachedController(KubernetesClient client, MeterRegistry meterRegistry) {
         this.client = client;
+        this.meterRegistry = meterRegistry;
+        this.counterDetails = new CounterDetails(1,"typetesting");
+        this.incrementCounter = new IncrementCounter(meterRegistry, "Number of Controller Execution");
     }
 
     // TODO Fill in the rest of the controller
@@ -61,6 +67,10 @@ public class MemcachedController implements ResourceController<Memcached> {
         if (currentReplicas != requiredReplicas) {
             deployment.getSpec().setReplicas(requiredReplicas);
             client.apps().deployments().createOrReplace(deployment);
+
+            // Counter increment is here.
+            incrementCounter.counterIncrement(counterDetails);
+
             return UpdateControl.noUpdate();
         }
 
@@ -78,6 +88,10 @@ public class MemcachedController implements ResourceController<Memcached> {
                 || !CollectionUtils.isEqualCollection(podNames, resource.getStatus().getNodes())) {
             if (resource.getStatus() == null) resource.setStatus(new MemcachedStatus());
             resource.getStatus().setNodes(podNames);
+
+            // Counter increment is here.
+            incrementCounter.counterIncrement(counterDetails);
+
             return UpdateControl.updateStatusSubResource(resource);
         }
 
