@@ -33,7 +33,7 @@ public class MemcachedController implements ResourceController<Memcached> {
     public MemcachedController(KubernetesClient client, MeterRegistry meterRegistry) {
         this.client = client;
         this.meterRegistry = meterRegistry;
-        this.counterDetails = new CounterDetails(1,"Controller Executions","Total Number of Controller Executions","This counter will count the number of type reconciliation happened for the operator.");
+        this.counterDetails = new CounterDetails(1,"Controller Executions","Total Number of Controller Executions","This counter will count the number of reconciliation happened for the operator.");
         this.incrementCounter = new IncrementCounter(meterRegistry, counterDetails.name,counterDetails.type, counterDetails.description);
     }
 

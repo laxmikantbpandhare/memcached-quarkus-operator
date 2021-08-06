@@ -51,6 +51,13 @@
       <artifactId>quarkus-micrometer-registry-prometheus</artifactId>
     </dependency>
 
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>io.micrometer</groupId>-->
+<!--      <artifactId>micrometer-registry-prometheus</artifactId>-->
+<!--      <version>1.7.2</version>-->
+<!--    </dependency>-->
+
     <dependency>
       <groupId>commons-collections</groupId>
       <artifactId>commons-collections</artifactId>
