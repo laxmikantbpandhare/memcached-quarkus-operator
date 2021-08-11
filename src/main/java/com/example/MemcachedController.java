@@ -69,7 +69,7 @@ public class MemcachedController implements ResourceController<Memcached> {
             client.apps().deployments().createOrReplace(deployment);
 
             // Counter increment is here.
-            incrementCounter.counterIncrement(counterDetails);
+            incrementCounter.counterSuccessIncrement(counterDetails);
 
             return UpdateControl.noUpdate();
         }
@@ -90,7 +90,7 @@ public class MemcachedController implements ResourceController<Memcached> {
             resource.getStatus().setNodes(podNames);
 
             // Counter increment is here.
-            incrementCounter.counterIncrement(counterDetails);
+            incrementCounter.counterSuccessIncrement(counterDetails);
 
             return UpdateControl.updateStatusSubResource(resource);
         }

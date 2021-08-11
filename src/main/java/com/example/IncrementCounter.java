@@ -5,7 +5,8 @@ import io.micrometer.core.instrument.MeterRegistry;
 
 public class IncrementCounter {
 
-    private Counter increaseTheCounter;
+    private Counter increaseSuccessCounter;
+    private Counter increaseFailCounter;
     private final MeterRegistry meterRegistry;
     private String type;
     private String description;
@@ -21,14 +22,24 @@ public class IncrementCounter {
 
 
     private void initCounter() {
-        increaseTheCounter = Counter.builder(name)    // 1 - create a counter using the fluent API.
-                .tag("Counter type", type)
+        increaseSuccessCounter = Counter.builder(name)    // 1 - create a counter using the fluent API.
+                .tag("succeeded", type)
+                .description(description)
+                .register(meterRegistry);
+
+        increaseFailCounter = Counter.builder(name)    // 1 - create a counter using the fluent API.
+                .tag("failed", type)
                 .description(description)
                 .register(meterRegistry);
     }
 
-    public void counterIncrement(CounterDetails counterDetails){
-        increaseTheCounter.increment(); // 2 -  Increment the counter.
-        System.out.println("here"+increaseTheCounter);
+    public void counterSuccessIncrement(CounterDetails counterDetails){
+        increaseSuccessCounter.increment(); // 2 -  Increment the counter
+        System.out.println("here"+increaseSuccessCounter);
+    }
+
+    public void counterFailIncrement(CounterDetails counterDetails){
+        increaseFailCounter.increment(); // 2 -  Increment the counter
+        System.out.println("here"+increaseFailCounter);
     }
 }
