@@ -49,6 +49,8 @@ public class MemcachedController implements ResourceController<Memcached> {
         Memcached resource, Context<Memcached> context) {
         // TODO: fill in logic
 
+//        incrementCounter.counterFailIncrement(counterDetails);
+
         Deployment deployment = client.apps()
                 .deployments()
                 .inNamespace(resource.getMetadata().getNamespace())
