@@ -27,18 +27,14 @@ import java.util.stream.Collectors;
 public class MemcachedController implements ResourceController<Memcached> {
 
     private final KubernetesClient client;
-    CounterDetails successCounterDetails;
-    CounterDetails failCounterDetails;
     IncrementCounter incrementSuccessCounter;
     IncrementCounter incrementFailCounter;
     private final MeterRegistry meterRegistry;
     public MemcachedController(KubernetesClient client, MeterRegistry meterRegistry) {
         this.client = client;
         this.meterRegistry = meterRegistry;//"Controlled execution failed"
-        this.successCounterDetails = new CounterDetails(1,"Controller Executions","succeeded","Total Number of Controller Executions","This counter will count the number of reconciliation happened for the operator.");
-        this.failCounterDetails = new CounterDetails(1,"Failed Controller Executions","fail","Total Number of Failed Controller Executions","This counter will count the number of failed reconciliation happened for the operator.");
-        this.incrementSuccessCounter = new IncrementCounter(meterRegistry, successCounterDetails.name,successCounterDetails.tagName,successCounterDetails.tagType, successCounterDetails.description);
-        this.incrementFailCounter = new IncrementCounter(meterRegistry, failCounterDetails.name,failCounterDetails.tagName,failCounterDetails.tagType, failCounterDetails.description);
+        this.incrementSuccessCounter = new IncrementCounter(meterRegistry, "Controller Executions","succeeded","Total Number of Controller Executions", "This counter will count the number of reconciliation happened for the operator.");
+        this.incrementFailCounter = new IncrementCounter(meterRegistry, "Controller Executions","fail","Total Number of Failed Controller Executions", "This counter will count the number of failed reconciliation happened for the operator.");
     }
 
     // TODO Fill in the rest of the controller
@@ -53,7 +49,7 @@ public class MemcachedController implements ResourceController<Memcached> {
         Memcached resource, Context<Memcached> context) {
         // TODO: fill in logic
 
-        incrementFailCounter.counterIncrement(failCounterDetails);
+        incrementFailCounter.counterIncrement();
 
         Deployment deployment = client.apps()
                 .deployments()
@@ -75,7 +71,7 @@ public class MemcachedController implements ResourceController<Memcached> {
             client.apps().deployments().createOrReplace(deployment);
 
             // Counter increment is here.
-            incrementSuccessCounter.counterIncrement(successCounterDetails);
+            incrementSuccessCounter.counterIncrement();
 
             return UpdateControl.noUpdate();
         }
@@ -96,7 +92,7 @@ public class MemcachedController implements ResourceController<Memcached> {
             resource.getStatus().setNodes(podNames);
 
             // Counter increment is here.
-            incrementSuccessCounter.counterIncrement(successCounterDetails);
+            incrementSuccessCounter.counterIncrement();
 
             return UpdateControl.updateStatusSubResource(resource);
         }

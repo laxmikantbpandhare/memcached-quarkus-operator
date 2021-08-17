@@ -26,20 +26,10 @@ public class IncrementCounter {
                 .tag(tagName, tagType)
                 .description(description)
                 .register(meterRegistry);
-
-//        increaseFailCounter = Counter.builder("Failed Controller Executions")    // 1 - create a counter using the fluent API.
-//                .tag("failed", "Total Number of Failed Controller Executions")
-//                .description("This counter will count the number of failed reconciliation happened for the operator.")
-//                .register(meterRegistry);
     }
 
-    public void counterIncrement(CounterDetails counterDetails){
+    public void counterIncrement(){
         increaseSuccessCounter.increment(); // 2 -  Increment the counter
         System.out.println("here"+increaseSuccessCounter);
     }
-
-//    public void counterFailIncrement(CounterDetails counterDetails){
-//        increaseFailCounter.increment(); // 2 -  Increment the counter
-//        System.out.println("Failed here"+increaseFailCounter);
-//    }
 }
