@@ -30,6 +30,6 @@ public class IncrementCounter {
 
     public void counterIncrement(){
         increaseSuccessCounter.increment(); // 2 -  Increment the counter
-        System.out.println("here"+increaseSuccessCounter);
+        System.out.println("here"+tagName+increaseSuccessCounter);
     }
 }

@@ -32,9 +32,9 @@ public class MemcachedController implements ResourceController<Memcached> {
     private final MeterRegistry meterRegistry;
     public MemcachedController(KubernetesClient client, MeterRegistry meterRegistry) {
         this.client = client;
-        this.meterRegistry = meterRegistry;//"Controlled execution failed"
+        this.meterRegistry = meterRegistry;
+        this.incrementFailCounter = new IncrementCounter(meterRegistry, "Controller Executions Failed","failed","Total Number of Failed Controller Executions", "This counter will count the number of failed reconciliation happened for the operator.");
         this.incrementSuccessCounter = new IncrementCounter(meterRegistry, "Controller Executions","succeeded","Total Number of Controller Executions", "This counter will count the number of reconciliation happened for the operator.");
-        this.incrementFailCounter = new IncrementCounter(meterRegistry, "Controller Executions","fail","Total Number of Failed Controller Executions", "This counter will count the number of failed reconciliation happened for the operator.");
     }
 
     // TODO Fill in the rest of the controller
