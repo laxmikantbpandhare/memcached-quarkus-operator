@@ -6,7 +6,6 @@ import io.micrometer.core.instrument.MeterRegistry;
 public class IncrementCounter {
 
     private Counter increaseSuccessCounter;
-    private Counter increaseFailCounter;
     private final MeterRegistry meterRegistry;
     private String tagType;
     private String tagName;
@@ -21,7 +20,6 @@ public class IncrementCounter {
         this.description = description;
         initCounter();
     }
-
 
     private void initCounter() {
         increaseSuccessCounter = Counter.builder(name)    // 1 - create a counter using the fluent API.
