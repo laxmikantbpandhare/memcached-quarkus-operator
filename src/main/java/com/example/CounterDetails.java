@@ -4,30 +4,32 @@ public class CounterDetails {
 
     int counter;
     String name;
-    String type;
+    String tagName;
+    String tagType;
     String description;
 
-    public CounterDetails(int counter, String name, String type, String description) {
+    public CounterDetails(int counter, String name, String tagName, String tagType, String description) {
         this.counter = counter;
         this.name = name;
-        this.type = type;
+        this.tagName = tagName;
+        this.tagType = tagType;
         this.description = description;
     }
 
+
+    public String getTagType() {
+        return tagType;
+    }
+
+    public void setTagType(String tagType) {
+        this.tagType = tagType;
+    }
     public int getCounter() {
         return counter;
     }
 
     public void setCounter(int counter) {
         this.counter = counter;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getDescription() {

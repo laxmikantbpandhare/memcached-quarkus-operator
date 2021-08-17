@@ -8,14 +8,16 @@ public class IncrementCounter {
     private Counter increaseSuccessCounter;
     private Counter increaseFailCounter;
     private final MeterRegistry meterRegistry;
-    private String type;
+    private String tagType;
+    private String tagName;
     private String description;
     private String name;
 
-    IncrementCounter(MeterRegistry meterRegistry, String name, String type, String description){
+    IncrementCounter(MeterRegistry meterRegistry, String name, String tagName,String tagType, String description){
         this.meterRegistry = meterRegistry;
         this.name = name;
-        this.type = type;
+        this.tagName = tagName;
+        this.tagType = tagType;
         this.description = description;
         initCounter();
     }
@@ -23,23 +25,23 @@ public class IncrementCounter {
 
     private void initCounter() {
         increaseSuccessCounter = Counter.builder(name)    // 1 - create a counter using the fluent API.
-                .tag("succeeded", type)
+                .tag(tagName, tagType)
                 .description(description)
                 .register(meterRegistry);
 
-        increaseFailCounter = Counter.builder("Failed Controller Executions")    // 1 - create a counter using the fluent API.
-                .tag("failed", "Total Number of Failed Controller Executions")
-                .description("This counter will count the number of failed reconciliation happened for the operator.")
-                .register(meterRegistry);
+//        increaseFailCounter = Counter.builder("Failed Controller Executions")    // 1 - create a counter using the fluent API.
+//                .tag("failed", "Total Number of Failed Controller Executions")
+//                .description("This counter will count the number of failed reconciliation happened for the operator.")
+//                .register(meterRegistry);
     }
 
-    public void counterSuccessIncrement(CounterDetails counterDetails){
+    public void counterIncrement(CounterDetails counterDetails){
         increaseSuccessCounter.increment(); // 2 -  Increment the counter
         System.out.println("here"+increaseSuccessCounter);
     }
 
-    public void counterFailIncrement(CounterDetails counterDetails){
-        increaseFailCounter.increment(); // 2 -  Increment the counter
-        System.out.println("Failed here"+increaseFailCounter);
-    }
+//    public void counterFailIncrement(CounterDetails counterDetails){
+//        increaseFailCounter.increment(); // 2 -  Increment the counter
+//        System.out.println("Failed here"+increaseFailCounter);
+//    }
 }
