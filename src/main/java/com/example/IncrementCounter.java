@@ -2,7 +2,6 @@ package com.example;
 
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
-//import io.micrometer.core.instrument.MeterRegistry;
 
 public class IncrementCounter {
 
@@ -19,18 +18,20 @@ public class IncrementCounter {
         this.tagName = tagName;
         this.tagType = tagType;
         this.description = description;
-        initCounter();
+//        initCounter();
     }
 
-    private void initCounter() {
-        increaseSuccessCounter = Counter.builder(name)    // 1 - create a counter using the fluent API.
-                .tag(tagName, tagType)
-                .description(description)
-                .register(meterRegistry);
-    }
+//    private void initCounter() {
+//        increaseSuccessCounter = Counter.builder(name)    // 1 - create a counter using the fluent API.
+//                .tag(tagName, tagType)
+//                .description(description)
+//                .register(meterRegistry);
+//    }
 
     public void counterIncrement(){
-        increaseSuccessCounter.increment(); // 2 -  Increment the counter
-        System.out.println("here"+tagName+increaseSuccessCounter);
+//        increaseSuccessCounter.increment(); // 2 -  Increment the counter
+//        System.out.println("here"+tagName+increaseSuccessCounter);
+        meterRegistry.counter(
+                "operator.sdk.controllers.execution.success", "controller", name, "type", "success").increment();
     }
 }
