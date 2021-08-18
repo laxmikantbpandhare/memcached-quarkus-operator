@@ -16,12 +16,16 @@ import io.javaoperatorsdk.operator.api.*;
 import io.javaoperatorsdk.operator.api.Context;
 import io.javaoperatorsdk.operator.processing.event.EventSourceManager;
 import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
 import org.apache.commons.collections.CollectionUtils;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+
+
 
 @Controller
 public class MemcachedController implements ResourceController<Memcached> {
@@ -30,9 +34,12 @@ public class MemcachedController implements ResourceController<Memcached> {
     IncrementCounter incrementSuccessCounter;
     IncrementCounter incrementFailCounter;
     private final MeterRegistry meterRegistry;
+    final Timer timer;
     public MemcachedController(KubernetesClient client, MeterRegistry meterRegistry) {
         this.client = client;
         this.meterRegistry = meterRegistry;
+        this.timer =
+                meterRegistry.timer("operator.sdk.controllers.execution.createOrUpdateTimerhere", "controllerhere", "timer name");
         this.incrementFailCounter = new IncrementCounter(meterRegistry, "Controller Executions Failed","failed","Total Number of Failed Controller Executions", "This counter will count the number of failed reconciliation happened for the operator.");
         this.incrementSuccessCounter = new IncrementCounter(meterRegistry, "Controller Executions","succeeded","Total Number of Controller Executions", "This counter will count the number of reconciliation happened for the operator.");
     }
@@ -49,7 +56,7 @@ public class MemcachedController implements ResourceController<Memcached> {
         Memcached resource, Context<Memcached> context) {
         // TODO: fill in logic
 
-        incrementFailCounter.counterIncrement();
+        timer.record(() -> incrementFailCounter.counterIncrement());
 
         Deployment deployment = client.apps()
                 .deployments()
