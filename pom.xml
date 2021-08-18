@@ -49,22 +49,27 @@
 <!--    // only added this-->
 
     <!-- https://mvnrepository.com/artifact/io.micrometer/micrometer-core -->
-<!--    <dependency>-->
-<!--      <groupId>io.micrometer</groupId>-->
-<!--      <artifactId>micrometer-core</artifactId>-->
-<!--      <version>1.7.3</version>-->
-<!--    </dependency>-->
-
     <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-micrometer-registry-prometheus</artifactId>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-core</artifactId>
+      <version>1.7.3</version>
     </dependency>
+
+<!--    <dependency>-->
+<!--      <groupId>io.quarkus</groupId>-->
+<!--      <artifactId>quarkus-micrometer-registry-prometheus</artifactId>-->
+<!--    </dependency>-->
 
     <dependency>
       <groupId>commons-collections</groupId>
       <artifactId>commons-collections</artifactId>
         <version>3.2.2</version>
       </dependency>
+    <dependency>
+      <groupId>io.micronaut.micrometer</groupId>
+      <artifactId>micronaut-micrometer-core</artifactId>
+      <version>4.0.0-RC2</version>
+    </dependency>
   </dependencies>
 
   <build>
