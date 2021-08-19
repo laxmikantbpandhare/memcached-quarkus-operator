@@ -39,7 +39,7 @@ public class MemcachedController implements ResourceController<Memcached> {
         this.client = client;
         this.meterRegistry = meterRegistry;
         this.timer =
-                meterRegistry.timer("operator.sdk.controllers.execution.createOrUpdateTimerhere", "controllerhere", "timer name");
+                meterRegistry.timer("operator.sdk.controllers.execution.createOrUpdateTimer", "controller", "timer name");
         this.incrementFailCounter = new IncrementCounter(meterRegistry, "Controller Executions Failed","failed","Total Number of Failed Controller Executions", "This counter will count the number of failed reconciliation happened for the operator.");
         this.incrementSuccessCounter = new IncrementCounter(meterRegistry, "Controller Executions","succeeded","Total Number of Controller Executions", "This counter will count the number of reconciliation happened for the operator.");
     }
@@ -56,7 +56,7 @@ public class MemcachedController implements ResourceController<Memcached> {
         Memcached resource, Context<Memcached> context) {
         // TODO: fill in logic
 
-        timer.record(() -> incrementFailCounter.counterIncrement());
+        timer.record(() -> incrementSuccessCounter.counterIncrement());
 
         Deployment deployment = client.apps()
                 .deployments()
