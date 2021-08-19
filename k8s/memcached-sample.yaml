@@ -4,4 +4,4 @@ metadata:
   name: memcached-sample
 spec:
   # Add fields here
-  size: 5
+  size: 6

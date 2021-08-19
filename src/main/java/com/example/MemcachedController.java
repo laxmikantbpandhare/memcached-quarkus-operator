@@ -15,8 +15,8 @@ import io.fabric8.kubernetes.client.KubernetesClient;
 import io.javaoperatorsdk.operator.api.*;
 import io.javaoperatorsdk.operator.api.Context;
 import io.javaoperatorsdk.operator.processing.event.EventSourceManager;
-import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.Timer;
+//import io.micrometer.core.instrument.MeterRegistry;
+//import io.micrometer.core.instrument.Timer;
 import org.apache.commons.collections.CollectionUtils;
 
 import java.util.HashMap;
@@ -31,17 +31,17 @@ import java.util.stream.Collectors;
 public class MemcachedController implements ResourceController<Memcached> {
 
     private final KubernetesClient client;
-    IncrementCounter incrementSuccessCounter;
-    IncrementCounter incrementFailCounter;
-    private final MeterRegistry meterRegistry;
-    final Timer timer;
-    public MemcachedController(KubernetesClient client, MeterRegistry meterRegistry) {
+//    IncrementCounter incrementSuccessCounter;
+//    IncrementCounter incrementFailCounter;
+//    private final MeterRegistry meterRegistry;
+//    final Timer timer;
+    public MemcachedController(KubernetesClient client) {
         this.client = client;
-        this.meterRegistry = meterRegistry;
-        this.timer =
-                meterRegistry.timer("operator.sdk.controllers.execution.createOrUpdateTimer", "controller", "timer name");
-        this.incrementFailCounter = new IncrementCounter(meterRegistry, "Controller Executions Failed","failed","Total Number of Failed Controller Executions", "This counter will count the number of failed reconciliation happened for the operator.");
-        this.incrementSuccessCounter = new IncrementCounter(meterRegistry, "Controller Executions","succeeded","Total Number of Controller Executions", "This counter will count the number of reconciliation happened for the operator.");
+//        this.meterRegistry = meterRegistry;
+//        this.timer =
+//                meterRegistry.timer("operator.sdk.controllers.execution.createOrUpdateTimer", "controller", "timer name");
+//        this.incrementFailCounter = new IncrementCounter(meterRegistry, "Controller Executions Failed","failed","Total Number of Failed Controller Executions", "This counter will count the number of failed reconciliation happened for the operator.");
+//        this.incrementSuccessCounter = new IncrementCounter(meterRegistry, "Controller Executions","succeeded","Total Number of Controller Executions", "This counter will count the number of reconciliation happened for the operator.");
     }
 
     // TODO Fill in the rest of the controller
@@ -56,7 +56,7 @@ public class MemcachedController implements ResourceController<Memcached> {
         Memcached resource, Context<Memcached> context) {
         // TODO: fill in logic
 
-        timer.record(() -> incrementSuccessCounter.counterIncrement());
+//        timer.record(() -> incrementSuccessCounter.counterIncrement());
 
         Deployment deployment = client.apps()
                 .deployments()
@@ -78,7 +78,7 @@ public class MemcachedController implements ResourceController<Memcached> {
             client.apps().deployments().createOrReplace(deployment);
 
             // Counter increment is here.
-            incrementSuccessCounter.counterIncrement();
+//            incrementSuccessCounter.counterIncrement();
 
             return UpdateControl.noUpdate();
         }
@@ -99,7 +99,7 @@ public class MemcachedController implements ResourceController<Memcached> {
             resource.getStatus().setNodes(podNames);
 
             // Counter increment is here.
-            incrementSuccessCounter.counterIncrement();
+//            incrementSuccessCounter.counterIncrement();
 
             return UpdateControl.updateStatusSubResource(resource);
         }
