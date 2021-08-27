@@ -12,6 +12,7 @@ public class IncrementCounter {
     private String description;
     private String name;
 
+
     IncrementCounter(MeterRegistry meterRegistry, String name, String tagName,String tagType, String description){
         this.meterRegistry = meterRegistry;
         this.name = name;
@@ -27,6 +28,8 @@ public class IncrementCounter {
 //                .description(description)
 //                .register(meterRegistry);
 //    }
+
+
 
     public void counterIncrement(){
 //        increaseSuccessCounter.increment(); // 2 -  Increment the counter

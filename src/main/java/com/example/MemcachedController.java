@@ -31,15 +31,19 @@ import java.util.stream.Collectors;
 public class MemcachedController implements ResourceController<Memcached> {
 
     private final KubernetesClient client;
-    IncrementCounter incrementSuccessCounter;
-    IncrementCounter incrementFailCounter;
+//    IncrementCounter incrementSuccessCounter;
+//    IncrementCounter incrementFailCounter;
     private final MeterRegistry meterRegistry;
-    final Timer timer;
+//    final Timer timer;
     public MemcachedController(KubernetesClient client, MeterRegistry meterRegistry) {
         this.client = client;
         this.meterRegistry = meterRegistry;
-        this.timer =
-                meterRegistry.timer("operator.sdk.controllers.execution.createOrUpdateTimer", "controller", "Controller Execution Timer");
+//        this.timer = Timer
+//                .builder("Controller Executions Timer")
+//                .publishPercentiles(0.3, 0.5, 0.95)
+//                .publishPercentileHistogram()
+//                .register(meterRegistry);
+                //meterRegistry.timer("operator.sdk.controllers.execution.createOrUpdateTimer", "controller", "Controller Execution Timer");
 //        this.incrementFailCounter = new IncrementCounter(meterRegistry, "Controller Executions Failed","failed","Total Number of Failed Controller Executions", "This counter will count the number of failed reconciliation happened for the operator.");
 //        this.incrementSuccessCounter = new IncrementCounter(meterRegistry, "Controller Executions","succeeded","Total Number of Controller Executions", "This counter will count the number of reconciliation happened for the operator.");
     }
@@ -56,7 +60,7 @@ public class MemcachedController implements ResourceController<Memcached> {
         Memcached resource, Context<Memcached> context) {
         // TODO: fill in logic
 
-        timer.record(() -> incrementSuccessCounter.counterIncrement());
+//        timer.record(() -> incrementSuccessCounter.counterIncrement());
 
         Deployment deployment = client.apps()
                 .deployments()
@@ -78,7 +82,7 @@ public class MemcachedController implements ResourceController<Memcached> {
             client.apps().deployments().createOrReplace(deployment);
 
             // Counter increment is here.
-            incrementSuccessCounter.counterIncrement();
+//            incrementSuccessCounter.counterIncrement();
 
             return UpdateControl.noUpdate();
         }
@@ -99,7 +103,7 @@ public class MemcachedController implements ResourceController<Memcached> {
             resource.getStatus().setNodes(podNames);
 
             // Counter increment is here.
-            incrementSuccessCounter.counterIncrement();
+//            incrementSuccessCounter.counterIncrement();
 
             return UpdateControl.updateStatusSubResource(resource);
         }
