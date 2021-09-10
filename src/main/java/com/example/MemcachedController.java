@@ -15,8 +15,8 @@ import io.fabric8.kubernetes.client.KubernetesClient;
 import io.javaoperatorsdk.operator.api.*;
 import io.javaoperatorsdk.operator.api.Context;
 import io.javaoperatorsdk.operator.processing.event.EventSourceManager;
-import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.Timer;
+//import io.micrometer.core.instrument.MeterRegistry;
+//import io.micrometer.core.instrument.Timer;
 import org.apache.commons.collections.CollectionUtils;
 
 import java.util.HashMap;
@@ -33,11 +33,11 @@ public class MemcachedController implements ResourceController<Memcached> {
     private final KubernetesClient client;
 //    IncrementCounter incrementSuccessCounter;
 //    IncrementCounter incrementFailCounter;
-    private final MeterRegistry meterRegistry;
+//    private final MeterRegistry meterRegistry;
 //    final Timer timer;
-    public MemcachedController(KubernetesClient client, MeterRegistry meterRegistry) {
+    public MemcachedController(KubernetesClient client){//, MeterRegistry meterRegistry) {
         this.client = client;
-        this.meterRegistry = meterRegistry;
+//        this.meterRegistry = meterRegistry;
 //        this.timer = Timer
 //                .builder("Controller Executions Timer")
 //                .publishPercentiles(0.3, 0.5, 0.95)
