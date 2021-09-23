@@ -60,6 +60,7 @@ public class MemcachedController implements ResourceController<Memcached> {
         Memcached resource, Context<Memcached> context) {
         // TODO: fill in logic
 
+        
 //        timer.record(() -> incrementSuccessCounter.counterIncrement());
 
         Deployment deployment = client.apps()
