@@ -15,11 +15,9 @@
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <fabric8-client.version>5.7.3</fabric8-client.version>
-<!--    <quarkus-sdk.version>1.9.4</quarkus-sdk.version>-->
-<!--    <quarkus-sdk.version>2.1.0.Beta5-SNAPSHOT</quarkus-sdk.version>-->
-    <quarkus.version>1.13.7.Final</quarkus.version>
-    <micrometer.version>1.7.3</micrometer.version>
+    <fabric8-client.version>5.12.1</fabric8-client.version>
+    <quarkus-sdk.version>3.0.6</quarkus-sdk.version>
+    <quarkus.version>2.7.5.Final</quarkus.version>
   </properties>
 
   <dependencyManagement>
@@ -41,44 +39,21 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
-
-<!--    <dependency>-->
-<!--      <groupId>io.quarkiverse.operatorsdk</groupId>-->
-<!--      <artifactId>quarkus-operator-sdk</artifactId>-->
-<!--      <version>${quarkus-sdk.version}</version>-->
-<!--    </dependency>-->
-
-    <!-- https://mvnrepository.com/artifact/io.quarkiverse.operatorsdk/quarkus-operator-sdk -->
     <dependency>
       <groupId>io.quarkiverse.operatorsdk</groupId>
       <artifactId>quarkus-operator-sdk</artifactId>
-      <version>2.1.0.Beta5-SNAPSHOT</version>
+      <version>${quarkus-sdk.version}</version>
     </dependency>
-
-
-
-    <!--    // only added this-->
-
     <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-registry-prometheus</artifactId>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcpkix-jdk15on</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-micrometer-registry-prometheus</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>commons-collections</groupId>
-      <artifactId>commons-collections</artifactId>
-        <version>3.2.2</version>
-      </dependency>
-    <dependency>
-      <groupId>io.micronaut.micrometer</groupId>
-      <artifactId>micronaut-micrometer-core</artifactId>
-      <version>4.0.0-RC2</version>
-    </dependency>
+    <groupId>commons-collections</groupId>
+    <artifactId>commons-collections</artifactId>
+    <version>3.2.2</version>
+  </dependency>
   </dependencies>
 
   <build>
@@ -86,7 +61,6 @@
       <plugin>
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
-        <version>${quarkus.version}</version>
         <executions>
           <execution>
             <goals>
