@@ -12,12 +12,15 @@ import io.fabric8.kubernetes.api.model.apps.Deployment;
 import io.fabric8.kubernetes.api.model.apps.DeploymentBuilder;
 import io.fabric8.kubernetes.api.model.apps.DeploymentSpecBuilder;
 import io.fabric8.kubernetes.client.KubernetesClient;
-import io.javaoperatorsdk.operator.api.*;
-import io.javaoperatorsdk.operator.api.Context;
-import io.javaoperatorsdk.operator.processing.event.EventSourceManager;
-//import io.micrometer.core.instrument.MeterRegistry;
-//import io.micrometer.core.instrument.Timer;
+import io.javaoperatorsdk.operator.api.reconciler.Context;
+import io.javaoperatorsdk.operator.api.reconciler.ControllerConfiguration;
+import io.javaoperatorsdk.operator.api.reconciler.Reconciler;
+import io.javaoperatorsdk.operator.api.reconciler.UpdateControl;
 import org.apache.commons.collections.CollectionUtils;
+
+import javax.inject.Inject;
+
+import static io.javaoperatorsdk.operator.api.reconciler.Constants.WATCH_CURRENT_NAMESPACE;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,91 +28,75 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
+//public class MemcachedController implements ResourceController<Memcached> {
+//@ControllerConfiguration(namespaces = WATCH_CURRENT_NAMESPACE)
+@ControllerConfiguration
+public class MemcachedController implements Reconciler<Memcached> {
 
+    @Inject
+    KubernetesClient client;
 
-@Controller
-public class MemcachedController implements ResourceController<Memcached> {
-
-    private final KubernetesClient client;
-//    IncrementCounter incrementSuccessCounter;
-//    IncrementCounter incrementFailCounter;
-//    private final MeterRegistry meterRegistry;
-//    final Timer timer;
-    public MemcachedController(KubernetesClient client){//, MeterRegistry meterRegistry) {
+    public MemcachedController(KubernetesClient client) {
         this.client = client;
-//        this.meterRegistry = meterRegistry;
-//        this.timer = Timer
-//                .builder("Controller Executions Timer")
-//                .publishPercentiles(0.3, 0.5, 0.95)
-//                .publishPercentileHistogram()
-//                .register(meterRegistry);
-                //meterRegistry.timer("operator.sdk.controllers.execution.createOrUpdateTimer", "controller", "Controller Execution Timer");
-//        this.incrementFailCounter = new IncrementCounter(meterRegistry, "Controller Executions Failed","failed","Total Number of Failed Controller Executions", "This counter will count the number of failed reconciliation happened for the operator.");
-//        this.incrementSuccessCounter = new IncrementCounter(meterRegistry, "Controller Executions","succeeded","Total Number of Controller Executions", "This counter will count the number of reconciliation happened for the operator.");
     }
 
     // TODO Fill in the rest of the controller
 
     @Override
-    public void init(EventSourceManager eventSourceManager) {
-        // TODO: fill in init
-    }
-
-    @Override
-    public UpdateControl<Memcached> createOrUpdateResource(
-        Memcached resource, Context<Memcached> context) {
+    public UpdateControl<Memcached> reconcile(Memcached memcached, Context context) {
         // TODO: fill in logic
-
-        
-//        timer.record(() -> incrementSuccessCounter.counterIncrement());
-
         Deployment deployment = client.apps()
                 .deployments()
-                .inNamespace(resource.getMetadata().getNamespace())
-                .withName(resource.getMetadata().getName())
+                .inNamespace(memcached.getMetadata().getNamespace())
+                .withName(memcached.getMetadata().getName())
                 .get();
 
         if (deployment == null) {
-            Deployment newDeployment = createMemcachedDeployment(resource);
+            //System.out.println("deployment = "+deployment);
+            Deployment newDeployment = createMemcachedDeployment(memcached);
             client.apps().deployments().create(newDeployment);
             return UpdateControl.noUpdate();
         }
 
         int currentReplicas = deployment.getSpec().getReplicas();
-        int requiredReplicas = resource.getSpec().getSize();
+        int requiredReplicas = memcached.getSpec().getSize();
+
+        System.out.println("currentReplicas = "+currentReplicas);
+        System.out.println("requiredReplicas = "+requiredReplicas);
 
         if (currentReplicas != requiredReplicas) {
             deployment.getSpec().setReplicas(requiredReplicas);
             client.apps().deployments().createOrReplace(deployment);
-
-            // Counter increment is here.
-//            incrementSuccessCounter.counterIncrement();
-
+            System.out.println("inside if = "+currentReplicas);
+            System.out.println("inside if = "+requiredReplicas);
             return UpdateControl.noUpdate();
         }
 
         List<Pod> pods = client.pods()
-                .inNamespace(resource.getMetadata().getNamespace())
-                .withLabels(labelsForMemcached(resource))
+                .inNamespace(memcached.getMetadata().getNamespace())
+                .withLabels(labelsForMemcached(memcached))
                 .list()
                 .getItems();
+
+        System.out.println("pods = "+pods);
 
         List<String> podNames =
                 pods.stream().map(p -> p.getMetadata().getName()).collect(Collectors.toList());
 
-
-        if (resource.getStatus() == null
-                || !CollectionUtils.isEqualCollection(podNames, resource.getStatus().getNodes())) {
-            if (resource.getStatus() == null) resource.setStatus(new MemcachedStatus());
-            resource.getStatus().setNodes(podNames);
-
-            // Counter increment is here.
-//            incrementSuccessCounter.counterIncrement();
-
-            return UpdateControl.updateStatusSubResource(resource);
+        System.out.println("podnames"+podNames);
+        if (memcached.getStatus() == null
+                || !CollectionUtils.isEqualCollection(podNames, memcached.getStatus().getNodes())) {
+            System.out.println(memcached.getStatus());
+            if (memcached.getStatus() == null)
+                memcached.setStatus(new MemcachedStatus());
+            memcached.getStatus().setNodes(podNames);
+            System.out.println(memcached.getStatus());
+            System.out.println("inside second if = "+currentReplicas);
+            System.out.println("inside second if = "+requiredReplicas);
+            return UpdateControl.updateStatus(memcached);
         }
 
-        return UpdateControl.noUpdate();
+         return UpdateControl.noUpdate();
     }
 
     private Map<String, String> labelsForMemcached(Memcached m) {
@@ -160,6 +147,5 @@ public class MemcachedController implements ResourceController<Memcached> {
                                 .build())
                 .build();
     }
-
 }
 
