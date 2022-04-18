@@ -3,8 +3,8 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   annotations:
-    app.quarkus.io/commit-id: 2394c189e6e1d20ce613bec6d9517bfef6ffae87
-    app.quarkus.io/build-timestamp: 2022-04-13 - 19:11:11 +0000
+    app.quarkus.io/commit-id: 96438d3a68e91477ad29b58458a8acc2be84ca2d
+    app.quarkus.io/build-timestamp: 2022-04-18 - 04:08:32 +0000
   labels:
     app.kubernetes.io/name: memcached-quarkus-operator-operator
     app.kubernetes.io/version: 0.0.1-SNAPSHOT
@@ -14,8 +14,8 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/commit-id: 2394c189e6e1d20ce613bec6d9517bfef6ffae87
-    app.quarkus.io/build-timestamp: 2022-04-13 - 19:11:11 +0000
+    app.quarkus.io/commit-id: 96438d3a68e91477ad29b58458a8acc2be84ca2d
+    app.quarkus.io/build-timestamp: 2022-04-18 - 04:08:32 +0000
   labels:
     app.kubernetes.io/name: memcached-quarkus-operator-operator
     app.kubernetes.io/version: 0.0.1-SNAPSHOT
@@ -102,8 +102,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.quarkus.io/commit-id: 2394c189e6e1d20ce613bec6d9517bfef6ffae87
-    app.quarkus.io/build-timestamp: 2022-04-13 - 19:11:11 +0000
+    app.quarkus.io/commit-id: 96438d3a68e91477ad29b58458a8acc2be84ca2d
+    app.quarkus.io/build-timestamp: 2022-04-18 - 04:08:32 +0000
   labels:
     app.kubernetes.io/name: memcached-quarkus-operator-operator
     app.kubernetes.io/version: 0.0.1-SNAPSHOT
@@ -117,8 +117,8 @@ spec:
   template:
     metadata:
       annotations:
-        app.quarkus.io/commit-id: 2394c189e6e1d20ce613bec6d9517bfef6ffae87
-        app.quarkus.io/build-timestamp: 2022-04-13 - 19:11:11 +0000
+        app.quarkus.io/commit-id: 96438d3a68e91477ad29b58458a8acc2be84ca2d
+        app.quarkus.io/build-timestamp: 2022-04-18 - 04:08:32 +0000
       labels:
         app.kubernetes.io/name: memcached-quarkus-operator-operator
         app.kubernetes.io/version: 0.0.1-SNAPSHOT
