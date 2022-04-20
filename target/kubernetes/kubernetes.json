@@ -3,28 +3,28 @@
   "kind" : "ServiceAccount",
   "metadata" : {
     "annotations" : {
-      "app.quarkus.io/commit-id" : "96438d3a68e91477ad29b58458a8acc2be84ca2d",
-      "app.quarkus.io/build-timestamp" : "2022-04-18 - 04:08:32 +0000"
+      "app.quarkus.io/commit-id" : "cca1c464e5ac8e4fc14d798335efded96c4ada7d",
+      "app.quarkus.io/build-timestamp" : "2022-04-18 - 16:23:31 +0000"
     },
     "labels" : {
-      "app.kubernetes.io/name" : "memcached-quarkus-operator-operator",
-      "app.kubernetes.io/version" : "0.0.1-SNAPSHOT"
+      "app.kubernetes.io/version" : "v0.0.1",
+      "app.kubernetes.io/name" : "memcached-quarkus-operator"
     },
-    "name" : "memcached-quarkus-operator-operator"
+    "name" : "memcached-quarkus-operator"
   }
 }{
   "apiVersion" : "v1",
   "kind" : "Service",
   "metadata" : {
     "annotations" : {
-      "app.quarkus.io/commit-id" : "96438d3a68e91477ad29b58458a8acc2be84ca2d",
-      "app.quarkus.io/build-timestamp" : "2022-04-18 - 04:08:32 +0000"
+      "app.quarkus.io/commit-id" : "cca1c464e5ac8e4fc14d798335efded96c4ada7d",
+      "app.quarkus.io/build-timestamp" : "2022-04-18 - 16:23:31 +0000"
     },
     "labels" : {
-      "app.kubernetes.io/name" : "memcached-quarkus-operator-operator",
-      "app.kubernetes.io/version" : "0.0.1-SNAPSHOT"
+      "app.kubernetes.io/name" : "memcached-quarkus-operator",
+      "app.kubernetes.io/version" : "v0.0.1"
     },
-    "name" : "memcached-quarkus-operator-operator"
+    "name" : "memcached-quarkus-operator"
   },
   "spec" : {
     "ports" : [ {
@@ -33,8 +33,8 @@
       "targetPort" : 8080
     } ],
     "selector" : {
-      "app.kubernetes.io/name" : "memcached-quarkus-operator-operator",
-      "app.kubernetes.io/version" : "0.0.1-SNAPSHOT"
+      "app.kubernetes.io/name" : "memcached-quarkus-operator",
+      "app.kubernetes.io/version" : "v0.0.1"
     },
     "type" : "ClusterIP"
   }
@@ -42,7 +42,7 @@
   "apiVersion" : "rbac.authorization.k8s.io/v1",
   "kind" : "RoleBinding",
   "metadata" : {
-    "name" : "memcached-quarkus-operator-operator-view"
+    "name" : "memcached-quarkus-operator-view"
   },
   "roleRef" : {
     "kind" : "ClusterRole",
@@ -51,7 +51,7 @@
   },
   "subjects" : [ {
     "kind" : "ServiceAccount",
-    "name" : "memcached-quarkus-operator-operator"
+    "name" : "memcached-quarkus-operator"
   } ]
 }{
   "apiVersion" : "rbac.authorization.k8s.io/v1",
@@ -88,7 +88,7 @@
   },
   "subjects" : [ {
     "kind" : "ServiceAccount",
-    "name" : "memcached-quarkus-operator-operator"
+    "name" : "memcached-quarkus-operator"
   } ]
 }{
   "apiVersion" : "rbac.authorization.k8s.io/v1",
@@ -103,39 +103,39 @@
   },
   "subjects" : [ {
     "kind" : "ServiceAccount",
-    "name" : "memcached-quarkus-operator-operator"
+    "name" : "memcached-quarkus-operator"
   } ]
 }{
   "apiVersion" : "apps/v1",
   "kind" : "Deployment",
   "metadata" : {
     "annotations" : {
-      "app.quarkus.io/commit-id" : "96438d3a68e91477ad29b58458a8acc2be84ca2d",
-      "app.quarkus.io/build-timestamp" : "2022-04-18 - 04:08:32 +0000"
+      "app.quarkus.io/commit-id" : "cca1c464e5ac8e4fc14d798335efded96c4ada7d",
+      "app.quarkus.io/build-timestamp" : "2022-04-18 - 16:23:31 +0000"
     },
     "labels" : {
-      "app.kubernetes.io/name" : "memcached-quarkus-operator-operator",
-      "app.kubernetes.io/version" : "0.0.1-SNAPSHOT"
+      "app.kubernetes.io/version" : "v0.0.1",
+      "app.kubernetes.io/name" : "memcached-quarkus-operator"
     },
-    "name" : "memcached-quarkus-operator-operator"
+    "name" : "memcached-quarkus-operator"
   },
   "spec" : {
     "replicas" : 1,
     "selector" : {
       "matchLabels" : {
-        "app.kubernetes.io/name" : "memcached-quarkus-operator-operator",
-        "app.kubernetes.io/version" : "0.0.1-SNAPSHOT"
+        "app.kubernetes.io/version" : "v0.0.1",
+        "app.kubernetes.io/name" : "memcached-quarkus-operator"
       }
     },
     "template" : {
       "metadata" : {
         "annotations" : {
-          "app.quarkus.io/commit-id" : "96438d3a68e91477ad29b58458a8acc2be84ca2d",
-          "app.quarkus.io/build-timestamp" : "2022-04-18 - 04:08:32 +0000"
+          "app.quarkus.io/commit-id" : "cca1c464e5ac8e4fc14d798335efded96c4ada7d",
+          "app.quarkus.io/build-timestamp" : "2022-04-18 - 16:23:31 +0000"
         },
         "labels" : {
-          "app.kubernetes.io/name" : "memcached-quarkus-operator-operator",
-          "app.kubernetes.io/version" : "0.0.1-SNAPSHOT"
+          "app.kubernetes.io/version" : "v0.0.1",
+          "app.kubernetes.io/name" : "memcached-quarkus-operator"
         }
       },
       "spec" : {
@@ -148,7 +148,7 @@
               }
             }
           } ],
-          "image" : "laxmikantbhaskarpandhare/memcached-quarkus-operator-operator:0.0.1-SNAPSHOT",
+          "image" : "registry-1.docker.io/library/controller:latest",
           "imagePullPolicy" : "Always",
           "livenessProbe" : {
             "failureThreshold" : 3,
@@ -162,7 +162,7 @@
             "successThreshold" : 1,
             "timeoutSeconds" : 10
           },
-          "name" : "memcached-quarkus-operator-operator",
+          "name" : "memcached-quarkus-operator",
           "ports" : [ {
             "containerPort" : 8080,
             "name" : "http",
@@ -181,7 +181,7 @@
             "timeoutSeconds" : 10
           }
         } ],
-        "serviceAccountName" : "memcached-quarkus-operator-operator"
+        "serviceAccountName" : "memcached-quarkus-operator"
       }
     }
   }

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.quarkus.io/build-timestamp: 2022-04-18 - 16:23:31 +0000
+    app.quarkus.io/commit-id: cca1c464e5ac8e4fc14d798335efded96c4ada7d
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/name: memcached-quarkus-operator
+    app.kubernetes.io/version: v0.0.1
+  name: memcached-quarkus-operator
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app.kubernetes.io/name: memcached-quarkus-operator
+    app.kubernetes.io/version: v0.0.1
+  type: ClusterIP
+status:
+  loadBalancer: {}
