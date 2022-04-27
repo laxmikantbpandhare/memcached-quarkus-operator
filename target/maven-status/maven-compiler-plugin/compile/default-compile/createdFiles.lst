@@ -1,4 +1,4 @@
-com/example/MemcachedController.class
+com/example/MemcachedReconciler.class
 com/example/MemcachedStatus.class
 com/example/MemcachedSpec.class
 com/example/Memcached.class

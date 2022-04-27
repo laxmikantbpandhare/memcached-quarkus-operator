@@ -1,4 +1,4 @@
-/Users/laxmikantbhaskarpandhare/Desktop/github-memcached-quarkus/memcached-quarkus-operator/src/main/java/com/example/MemcachedSpec.java
-/Users/laxmikantbhaskarpandhare/Desktop/github-memcached-quarkus/memcached-quarkus-operator/src/main/java/com/example/MemcachedController.java
-/Users/laxmikantbhaskarpandhare/Desktop/github-memcached-quarkus/memcached-quarkus-operator/src/main/java/com/example/Memcached.java
-/Users/laxmikantbhaskarpandhare/Desktop/github-memcached-quarkus/memcached-quarkus-operator/src/main/java/com/example/MemcachedStatus.java
+/Users/laxmikantbhaskarpandhare/Desktop/github-quarkus-/memcached-quarkus-operator/src/main/java/com/example/MemcachedStatus.java
+/Users/laxmikantbhaskarpandhare/Desktop/github-quarkus-/memcached-quarkus-operator/src/main/java/com/example/Memcached.java
+/Users/laxmikantbhaskarpandhare/Desktop/github-quarkus-/memcached-quarkus-operator/src/main/java/com/example/MemcachedSpec.java
+/Users/laxmikantbhaskarpandhare/Desktop/github-quarkus-/memcached-quarkus-operator/src/main/java/com/example/MemcachedReconciler.java
