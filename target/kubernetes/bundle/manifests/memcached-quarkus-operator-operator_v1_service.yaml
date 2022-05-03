@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.quarkus.io/build-timestamp: 2022-04-27 - 21:03:57 +0000
+    app.quarkus.io/commit-id: a891c7ddb519a470e6d1ce9f4305eda665a37e85
+    prometheus.io/path: /q/metrics
+    prometheus.io/port: "8080"
+    prometheus.io/scheme: http
+    prometheus.io/scrape: "true"
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/name: memcached-quarkus-operator-operator
+    app.kubernetes.io/version: 0.0.1-SNAPSHOT
+  name: memcached-quarkus-operator-operator
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app.kubernetes.io/name: memcached-quarkus-operator-operator
+    app.kubernetes.io/version: 0.0.1-SNAPSHOT
+  type: ClusterIP
+status:
+  loadBalancer: {}

@@ -3,12 +3,12 @@
   "kind" : "ServiceAccount",
   "metadata" : {
     "annotations" : {
-      "app.quarkus.io/commit-id" : "102c774fde26db87f292c41548490073d5f2d5e9",
-      "app.quarkus.io/build-timestamp" : "2022-04-27 - 19:46:33 +0000"
+      "app.quarkus.io/commit-id" : "a891c7ddb519a470e6d1ce9f4305eda665a37e85",
+      "app.quarkus.io/build-timestamp" : "2022-04-27 - 21:03:57 +0000"
     },
     "labels" : {
-      "app.kubernetes.io/version" : "0.0.1-SNAPSHOT",
-      "app.kubernetes.io/name" : "memcached-quarkus-operator-operator"
+      "app.kubernetes.io/name" : "memcached-quarkus-operator-operator",
+      "app.kubernetes.io/version" : "0.0.1-SNAPSHOT"
     },
     "name" : "memcached-quarkus-operator-operator"
   }
@@ -17,8 +17,8 @@
   "kind" : "Service",
   "metadata" : {
     "annotations" : {
-      "app.quarkus.io/commit-id" : "102c774fde26db87f292c41548490073d5f2d5e9",
-      "app.quarkus.io/build-timestamp" : "2022-04-27 - 19:46:33 +0000",
+      "app.quarkus.io/commit-id" : "a891c7ddb519a470e6d1ce9f4305eda665a37e85",
+      "app.quarkus.io/build-timestamp" : "2022-04-27 - 21:03:57 +0000",
       "prometheus.io/scrape" : "true",
       "prometheus.io/path" : "/q/metrics",
       "prometheus.io/port" : "8080",
@@ -114,16 +114,16 @@
   "kind" : "Deployment",
   "metadata" : {
     "annotations" : {
-      "app.quarkus.io/commit-id" : "102c774fde26db87f292c41548490073d5f2d5e9",
-      "app.quarkus.io/build-timestamp" : "2022-04-27 - 19:46:33 +0000",
+      "app.quarkus.io/commit-id" : "a891c7ddb519a470e6d1ce9f4305eda665a37e85",
+      "app.quarkus.io/build-timestamp" : "2022-04-27 - 21:03:57 +0000",
       "prometheus.io/scrape" : "true",
       "prometheus.io/path" : "/q/metrics",
       "prometheus.io/port" : "8080",
       "prometheus.io/scheme" : "http"
     },
     "labels" : {
-      "app.kubernetes.io/version" : "0.0.1-SNAPSHOT",
-      "app.kubernetes.io/name" : "memcached-quarkus-operator-operator"
+      "app.kubernetes.io/name" : "memcached-quarkus-operator-operator",
+      "app.kubernetes.io/version" : "0.0.1-SNAPSHOT"
     },
     "name" : "memcached-quarkus-operator-operator"
   },
@@ -131,23 +131,23 @@
     "replicas" : 1,
     "selector" : {
       "matchLabels" : {
-        "app.kubernetes.io/version" : "0.0.1-SNAPSHOT",
-        "app.kubernetes.io/name" : "memcached-quarkus-operator-operator"
+        "app.kubernetes.io/name" : "memcached-quarkus-operator-operator",
+        "app.kubernetes.io/version" : "0.0.1-SNAPSHOT"
       }
     },
     "template" : {
       "metadata" : {
         "annotations" : {
-          "app.quarkus.io/commit-id" : "102c774fde26db87f292c41548490073d5f2d5e9",
-          "app.quarkus.io/build-timestamp" : "2022-04-27 - 19:46:33 +0000",
+          "app.quarkus.io/commit-id" : "a891c7ddb519a470e6d1ce9f4305eda665a37e85",
+          "app.quarkus.io/build-timestamp" : "2022-04-27 - 21:03:57 +0000",
           "prometheus.io/scrape" : "true",
           "prometheus.io/path" : "/q/metrics",
           "prometheus.io/port" : "8080",
           "prometheus.io/scheme" : "http"
         },
         "labels" : {
-          "app.kubernetes.io/version" : "0.0.1-SNAPSHOT",
-          "app.kubernetes.io/name" : "memcached-quarkus-operator-operator"
+          "app.kubernetes.io/name" : "memcached-quarkus-operator-operator",
+          "app.kubernetes.io/version" : "0.0.1-SNAPSHOT"
         }
       },
       "spec" : {
