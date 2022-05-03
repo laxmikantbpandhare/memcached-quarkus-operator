@@ -76,7 +76,7 @@ spec:
                   valueFrom:
                     fieldRef:
                       fieldPath: metadata.namespace
-                image: laxmikantbhaskarpandhare/memcached-quarkus-operator-operator:0.0.1-SNAPSHOT
+                image: 013859989/quarkus-memcached-operator-bundle:v.0.0.15
                 imagePullPolicy: Always
                 livenessProbe:
                   failureThreshold: 3
@@ -102,6 +102,7 @@ spec:
                   successThreshold: 1
                   timeoutSeconds: 10
                 resources: {}
+                command: ["/usr/local/openjdk-8/bin/java", -jar", "target/quarkus-app/quarkus-run.jar"]
               serviceAccountName: memcached-quarkus-operator-operator
     strategy: deployment
   installModes:
