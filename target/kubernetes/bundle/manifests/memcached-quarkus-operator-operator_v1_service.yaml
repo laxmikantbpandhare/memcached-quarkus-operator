@@ -2,8 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2022-04-27 - 21:03:57 +0000
-    app.quarkus.io/commit-id: a891c7ddb519a470e6d1ce9f4305eda665a37e85
+    app.quarkus.io/build-timestamp: 2022-05-05 - 06:53:04 +0000
+    app.quarkus.io/commit-id: 3b57da1cc6e4c9c64505b96f86b5f9437a496285
     prometheus.io/path: /q/metrics
     prometheus.io/port: "8080"
     prometheus.io/scheme: http
