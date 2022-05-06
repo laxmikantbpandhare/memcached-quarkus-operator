@@ -8,7 +8,7 @@ annotations:
   operators.operatorframework.io.bundle.channel.default.v1: stable
   operators.operatorframework.io.metrics.builder: operator-sdk-v1.19.0+git
   operators.operatorframework.io.metrics.mediatype.v1: metrics+v1
-  operators.operatorframework.io.metrics.project_layout: unknown
+  operators.operatorframework.io.metrics.project_layout: quarkus.javaoperatorsdk.io/v1-alpha
 
   # Annotations for testing.
   operators.operatorframework.io.test.mediatype.v1: scorecard+v1

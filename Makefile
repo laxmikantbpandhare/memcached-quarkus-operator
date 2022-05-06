@@ -1,6 +1,9 @@
+VERSION ?= 0.0.18
 
 # Image URL to use all building/pushing image targets
 IMG ?= controller:latest
+IMAGE_TAG_BASE ?= 013859989/quarkus-memcached-operator
+BUNDLE_IMG ?= $(IMAGE_TAG_BASE)-bundle:v.$(VERSION)
 
 all: docker-build
 
@@ -27,6 +30,17 @@ docker-build: ## Build docker image with the manager.
 
 docker-push: ## Push docker image with the manager.
 	mvn package -Dquarkus.container-image.push=true -Dquarkus.container-image.image=${IMG}
+
+##@Bundle
+bundle-generate:
+	cat target/kubernetes/memcacheds.cache.example.com-v1.yml target/kubernetes/kubernetes.yml| operator-sdk generate bundle -q --overwrite --version 0.1.1 --default-channel=stable --channels=stable --package=memcached-quarkus-operator
+	operator-sdk bundle validate ./bundle
+
+bundle-build:
+	docker build -f bundle.Dockerfile -t $(BUNDLE_IMG) .
+
+bundle-push: ## Push the bundle image.
+	docker push $(BUNDLE_IMG)
 
 ##@ Deployment
 

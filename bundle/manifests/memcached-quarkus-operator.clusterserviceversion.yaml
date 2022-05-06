@@ -5,7 +5,7 @@ metadata:
     alm-examples: '[]'
     capabilities: Basic Install
     operators.operatorframework.io/builder: operator-sdk-v1.19.0+git
-    operators.operatorframework.io/project_layout: unknown
+    operators.operatorframework.io/project_layout: quarkus.javaoperatorsdk.io/v1-alpha
   name: memcached-quarkus-operator.v0.1.1
   namespace: placeholder
 spec:
@@ -95,7 +95,7 @@ spec:
                 readinessProbe:
                   failureThreshold: 3
                   httpGet:
-                    path: /q/health/ready
+                    path: /healthz
                     port: 8080
                     scheme: HTTP
                   periodSeconds: 30
